@@ -4,11 +4,14 @@
 ENGR 133 Fa 2020
 
 Assignment Information
-	Assignment:     Py4 Task 7
-	Author:         Rachel Evrard, revrard@purdue.edu
+	Assignment:     Python Project
+	Author:         Team 15
 	Team ID:        LC1-15
 	
-Contributors:  Maria Hubert, hubert3@purdue.edu
+Contributors:   Nathan Budiman, jbudiman@purdue.edu 
+                Collin Gernhardt, cgernhar@purdue.edu
+                Yolanda Chen, chen3633@purdue.edu
+                Rachel Evrard, revrard@purdue.edu
 	My contributor(s) helped me:	
 	[x] understand the assignment expectations without
 		telling me how they will approach it.
