@@ -22,22 +22,21 @@ Contributors:   Yolanda Chen, chen2633@purdue
 ===============================================================================
 '''
 import numpy as np
-import matplotlib.pyplot as plt
-image = plt.imread('Purdue_Arch.png')
-import matplotlib.image as mpimg
-#Read and Process image file
-plt.imshow(image)
-
 
 #Start Python smoothing
 def smoothing(gray):
+    #tempSum will hold values of a specific pixel after the kernal is set
     tempSum = 0
     smoothA = np.zeros((len(gray), len(gray[0])))
     #smoothingArray = np.array([1,1,1],[1,1,1],[1,1,1])
+    
+    #Determining dividing factor is sum of pixels used in calculations
     dividingFactor = 9
     
+    #Iterate through each pixel
     for i in range(len(gray)):
         for j in range(len(gray[0])):
+            #If statements check for edge cases along border of matrix
             if j < len(gray[0]) - 1:
                 tempSum += gray[i][j+1]
                 if i < len(gray) - 1:
@@ -56,28 +55,15 @@ def smoothing(gray):
                     tempSum += gray[i-1][j+1]
                     
             tempSum += gray[i][j]
-
+            
+            #Set resulting value after kernal calculation to new array smoothA
             smoothA[i][j] = tempSum/dividingFactor
             
             tempSum = 0
-    
+        
     return smoothA
             
 #End Python smoothing
-def rgbG(RGB):
-    return np.dot(RGB[...,:3], [0.2126, 0.7152, 0.0722])
-
-img = mpimg.imread('Purdue_Arch.png')     
-gray = rgbG(img)    
-plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-plt.show()
-#plt.imshow(gray)
-
-smoothedArray = smoothing(gray)
-
-plt.imshow(smoothedArray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-
-
 '''
 ===============================================================================
 ACADEMIC INTEGRITY STATEMENT
