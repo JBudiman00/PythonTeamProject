@@ -21,33 +21,24 @@ Contributors:   Yolanda Chen, chen2633@purdue
 	have to list that person as a contributor here as well.
 ===============================================================================
 '''
-#Imported numpy for it's useful array function
+#Input edge enhanced image, output thresholded image. This will be the final output.
 import numpy as np
 
-def rgbG(RGB):
-    grayArray = np.zeros((len(RGB), len(RGB[0])))
+def getTImage(EImage):
+    #Set finalArray to EImage size. The values in finalArray will be altered and finalArray will be what's outputted
+    finalArray = np.zeros((len(EImage), len(EImage[0])))
     
-    #Convert png image to 3D matrix
-    RGB = np.asarray(RGB)
+    #Iterate through each pixel in image
+    for i in range(len(EImage)):
+        for j in range(len(EImage[0])):
+            #Use threshold value to determine whether pixel is going to be white or black
+            if EImage[i][j] < 0.5:
+                finalArray[i][j] = 0
+            else:
+                finalArray[i][j] = 1
     
-    #Get first 3 values (R, G, B) of RGB array, 4th value is irrelevant and not needed
-    RGB = RGB[...,:3]
-    
-    tempSum = 0
-    #Return the 'intensity' of the image by multiplying RGB values by acceptable amount
-    for i in range(len(RGB)):
-        for j in range(len(RGB[0])):
-            #Add values of RGB by appropriate scaling to get intensity
-            tempSum += RGB[i][j][0]*0.2126
-            tempSum += RGB[i][j][1]*0.7152
-            tempSum += RGB[i][j][2]*0.0722
-            
-            #Add intensity value to appropriate point in matrix
-            grayArray[i][j] += tempSum
-            
-            #Reset sum
-            tempSum = 0
-    return grayArray
+    return finalArray
+
 '''
 ===============================================================================
 ACADEMIC INTEGRITY STATEMENT

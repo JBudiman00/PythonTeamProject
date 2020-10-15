@@ -27,8 +27,8 @@ import numpy as np
 def smoothing(gray):
     #tempSum will hold values of a specific pixel after the kernal is set
     tempSum = 0
+    #Use zeros to make an empty array that will have the new values put into it and ultimately be the output of the function
     smoothA = np.zeros((len(gray), len(gray[0])))
-    #smoothingArray = np.array([1,1,1],[1,1,1],[1,1,1])
     
     #Determining dividing factor is sum of pixels used in calculations
     dividingFactor = 9

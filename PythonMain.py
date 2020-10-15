@@ -25,19 +25,32 @@ Contributors:   Yolanda Chen, chen2633@purdue
 import PythonGray
 import PythonSmoothing
 import PythonEdgeEnhancement
+import PythonThresholding
 
 #Imported to display image
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-img = mpimg.imread('Purdue_Arch.png')    
+
+imgName = input('Enter the name of a color PNG image file ')
+
+#Exception handling
+try:
+    img = mpimg.imread(imgName)   
+    # If the file name is incorrect/not found, outputs an appropriate file handling error message
+except FileNotFoundError:
+    raise Exception("File name not found in directory, enter a proper file name")
 
 #The following four lines of code go through each process by calling the specific method it invokes
 gray = PythonGray.rgbG(img) 
 smoothedArray = PythonSmoothing.smoothing(gray) 
 edgeHigh = PythonEdgeEnhancement.getHighPassImage(smoothedArray)
+finalImage = PythonThresholding.getTImage(edgeHigh)
 
-plt.imshow(edgeHigh, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
+plt.imshow(finalImage, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
+
+#Output final image result to folder
+plt.savefig('output.png')
 '''
 ===============================================================================
 ACADEMIC INTEGRITY STATEMENT
